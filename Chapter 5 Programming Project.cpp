@@ -40,8 +40,7 @@ int main()
     return 0;
     */
 
-	ifstream inputFile;
-    inputFile.open("LineUp.txt");
+	ifstream inputFile("LineUp.txt");
 	string name;
     if (inputFile)
     {
@@ -55,6 +54,7 @@ int main()
 		cout << "Error opening file." << endl;
     }
     inputFile.close();
+    system("cd");
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
