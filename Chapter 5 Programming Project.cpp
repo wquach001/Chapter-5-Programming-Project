@@ -5,65 +5,140 @@
 using namespace std;
 #include <iomanip>
 #include <fstream>
+#include <random>
 int main()
 {
     /*
     int organisms = 0, min_days = 1, days;
-	double increase = 0, population = 0;
-    cout << "Please enter the starting number of organisms: \n";
-    cin >> organisms;
-    cout << "Please enter their average daily population increase (as a percentage): \n";
-    cin >> increase;
-    cout << "Please enter the number of days they will multiply: \n";
-	cin >> days;
+    double increase = 0, population = 0;
+    std::cout << "Please enter the starting number of organisms: \n";
+    std::cin >> organisms;
+    std::cout << "Please enter their average daily population increase (as a percentage): \n";
+    std::cin >> increase;
+    std::cout << "Please enter the number of days they will multiply: \n";
+    std::cin >> days;
 
-	cout << fixed << showpoint << setprecision(2);
+    std::cout << fixed << showpoint << setprecision(2);
 
     while (organisms >= 2 && increase >= 0 && days >= 1 && min_days <= days)
     {
         population = organisms * increase * min_days;
-		cout << "The population after " << min_days << " days is: " << population << endl;
+        std::cout << "The population after " << min_days << " days is: " << population << endl;
         min_days++;
     }
     while (organisms < 2 || increase < 0 || days < 1)
     {
-        cout << "The starting number of organisms must be at least 2\n"
+        std::cout << "The starting number of organisms must be at least 2\n"
              << "The average daily population increase must be a positive value\n"
              << "The number of days they will multiply must be at least 1\n"
-			 << "Please re-enter the values.\n\n";
-        cout << "Please enter the starting number of organisms: \n";
-        cin >> organisms;
-        cout << "Please enter their average daily population increase (as a percentage): \n";
-        cin >> increase;
-        cout << "Please enter the number of days they will multiply: \n";
-        cin >> days;
+             << "Please re-enter the values.\n\n";
+        std::cout << "Please enter the starting number of organisms: \n";
+        std::cin >> organisms;
+        std::cout << "Please enter their average daily population increase (as a percentage): \n";
+        std::cin >> increase;
+        std::cout << "Please enter the number of days they will multiply: \n";
+        std::cin >> days;
     return 0;
-    */
+    
 
-	ifstream inputFile("LineUp.txt");
-	string name;
-    if (inputFile)
+    ifstream inputFile("LineUp.txt");
+    string name;
+    string first_name = name;
+    string last_name = name;
+    int number = 1;
+    if (inputFile >> name)
     {
+        first_name = last_name = name;
+        std::cout << name << endl;
+
         while (inputFile >> name)
         {
-            cout << name << endl;
+            if (name < first_name)
+                first_name = name;
+			if (name > last_name)
+				last_name = name;
+            number++;
+            std::cout << name << endl;
         }
+        std::cout << "\nThe number of students in the class is: " << number << endl;
+		std::cout << "The first name in the list is: " << first_name << endl;
+		std::cout << "The last name in the list is: " << last_name << endl;
     }
     else
     {
-		cout << "Error opening file." << endl;
+        std::cout << "Error opening file." << endl;
     }
     inputFile.close();
-    system("cd");
+
+
+    string town, name;
+    int population, year = 1900;
+    ifstream file;
+    cout << "Please enter the data file name: \n";
+	cin >> name;
+    file.open(name);
+    cout << "Please enter the name of your town : \n";
+    cin >> town;
+    if (file >> population)
+    {
+        cout << "File was successfully opened.\n\n";
+        cout << town << " Population Growth" << "\n";
+        cout << "(Each * representes 1,000 people)\n";
+        cout << "-------------------------------------\n";
+        while (file >> population)
+        {
+			population /= 1000; // Convert population to thousands
+            cout << year << " ";
+            cout.fill('*');
+            cout << setw(population) << "*" << "\n";
+            year += 20;
+        }
+    
+    }
+    else
+    {
+        cout << "Error opening the file" << endl;
+    }
+    file.close();
+    return 0;
+    
+    cout << "Pattern A\n" << endl;
+    cout << "-------------------\n";
+	for (int plus = 1; plus <= 10; plus++)
+    {
+        cout.fill('+');
+        cout << setw(plus) << "+" << endl;
+    }
+	cout << "Pattern B\n" << endl;
+	cout << "-------------------\n";
+    for (int minus = 10; minus >= 1; minus--)
+    {
+        cout.fill('+');
+        cout << setw(minus) << "+" << endl;
+    }
+
+    return 0;
+*/
+
+random_device myEngine;
+uniform_int_distribution<int> myRandom(1, 100);
+int randomNumber = myRandom(myEngine);
+    int guess = 0;
+    int tries = 0;
+    cout << "Welcome to the Number Guessing Game!\n";
+    cout << "I have selected a number between 1 and 100.\n";
+    cout << "Try to guess it!\n";
+    while (guess != randomNumber)
+    {
+        cout << "Enter your guess: ";
+        cin >> guess;
+        tries++;
+        if (guess < randomNumber)
+            cout << "Too low! Try again.\n";
+        else if (guess > randomNumber)
+            cout << "Too high! Try again.\n";
+        else
+            cout << "Congratulations! You've guessed the number in " << tries << " tries.\n";
+    }
+	return 0;
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file
