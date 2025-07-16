@@ -10,7 +10,7 @@ using namespace std;
 int main()
 {  
     //Program 1: Population Program 
-        int organisms = 0, min_days = 1, days;
+        int organisms, min_days = 1, days;
         double increase = 0, population = 0;
         std::cout << "Please enter the starting number of organisms: \n";
         std::cin >> organisms;
@@ -23,8 +23,8 @@ int main()
 
         while (organisms >= 2 && increase >= 0 && days >= 1 && min_days <= days)
         {
-            population = organisms * increase * min_days;
-            std::cout << "The population after " << min_days << " days is: " << population << endl;
+            organisms += organisms * (increase / 100);
+            std::cout << "The population after " << min_days << " days is: " << organisms << endl;
             min_days++;
         }
         while (organisms < 2 || increase < 0 || days < 1)
@@ -33,19 +33,9 @@ int main()
                 << "The average daily population increase must be a positive value\n"
                 << "The number of days they will multiply must be at least 1\n"
                 << "Please re-enter the values.\n\n";
-            std::cout << "Please enter the starting number of organisms: \n";
-            std::cin >> organisms;
-            std::cout << "Please enter their average daily population increase (as a percentage): \n";
-            std::cin >> increase;
-            std::cout << "Please enter the number of days they will multiply: \n";
-            std::cin >> days;
-
-            population = organisms * increase * min_days;
-            std::cout << "The population after " << min_days << " days is: " << population << endl;
-            min_days++;
         }
         std::cout << "--------------------------------------------------------\n\n";
-    
+        /*
 
         //Program 2: Student Lineup Program
         ifstream inputFile("LinUp.txt");
@@ -155,7 +145,7 @@ int main()
             }
         }
         std::cout << "--------------------------------------------------------\n\n";
-        
+        */
 return 0;
 
 }
