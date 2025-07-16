@@ -12,41 +12,46 @@ int main()
     //Program 1: Population Program 
         int organisms = 0, min_days = 1, days;
         double increase = 0, population = 0;
-        cout << "Please enter the starting number of organisms: \n";
-        cin >> organisms;
-        cout << "Please enter their average daily population increase (as a percentage): \n";
-        cin >> increase;
-        cout << "Please enter the number of days they will multiply: \n";
-        cin >> days;
+        std::cout << "Please enter the starting number of organisms: \n";
+        std::cin >> organisms;
+        std::cout << "Please enter their average daily population increase (as a percentage): \n";
+        std::cin >> increase;
+        std::cout << "Please enter the number of days they will multiply: \n";
+        std::cin >> days;
 
-        cout << fixed << showpoint << setprecision(2);
+        std::cout << fixed << showpoint << setprecision(2);
 
         while (organisms >= 2 && increase >= 0 && days >= 1 && min_days <= days)
         {
             population = organisms * increase * min_days;
-            cout << "The population after " << min_days << " days is: " << population << endl;
+            std::cout << "The population after " << min_days << " days is: " << population << endl;
             min_days++;
         }
         while (organisms < 2 || increase < 0 || days < 1)
         {
-            cout << "The starting number of organisms must be at least 2\n"
+            std::cout << "The starting number of organisms must be at least 2\n"
                 << "The average daily population increase must be a positive value\n"
                 << "The number of days they will multiply must be at least 1\n"
                 << "Please re-enter the values.\n\n";
-            cout << "Please enter the starting number of organisms: \n";
-            cin >> organisms;
-            cout << "Please enter their average daily population increase (as a percentage): \n";
-            cin >> increase;
-            cout << "Please enter the number of days they will multiply: \n";
-            cin >> days;
-            cout << "-------------------\n\n";
-    }
+            std::cout << "Please enter the starting number of organisms: \n";
+            std::cin >> organisms;
+            std::cout << "Please enter their average daily population increase (as a percentage): \n";
+            std::cin >> increase;
+            std::cout << "Please enter the number of days they will multiply: \n";
+            std::cin >> days;
+
+            population = organisms * increase * min_days;
+            std::cout << "The population after " << min_days << " days is: " << population << endl;
+            min_days++;
+        }
+        std::cout << "--------------------------------------------------------\n\n";
+    
 
         //Program 2: Student Lineup Program
-        ifstream inputFile("LineUp.txt");
-        string name;
-        string first_name = name;
-        string last_name = name;
+        ifstream inputFile("LinUp.txt");
+        std::string name;
+        std::string first_name = name;
+        std::string last_name = name;
         int number = 1;
         if (inputFile >> name)
         {
@@ -71,8 +76,8 @@ int main()
             std::cout << "Error opening file." << endl;
         }
         inputFile.close();
-		cout << "-------------------\n\n";
-
+        std::cout << "--------------------------------------------------------\n\n";
+        
         //Program 3: Population Bar Chart
         string town, title;
         int people, pop, year = 1900;
@@ -103,7 +108,7 @@ int main()
             cout << "Error opening the file" << endl;
         }
         file.close();
-        cout << "-------------------\n\n";
+        std::cout << "--------------------------------------------------------\n\n";
 
         //Program 4: Patterns Program
         cout << "Pattern A\n" << endl;
@@ -120,7 +125,7 @@ int main()
             cout.fill('+');
             cout << setw(minus) << "+" << endl;
         }
-        cout << "-------------------\n\n";
+        std::cout << "--------------------------------------------------------\n\n";
 
         //Program 5: Randome Number Guessing Game
         random_device myEngine;
@@ -149,7 +154,8 @@ int main()
                 cout << "Congratulations! You've guessed the number in " << tries << " tries.\n";
             }
         }
-        cout << "-------------------\n\n";
+        std::cout << "--------------------------------------------------------\n\n";
+        
 return 0;
 
 }

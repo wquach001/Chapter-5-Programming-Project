@@ -126,7 +126,7 @@
     <ClCompile Include="Chapter 5 Programming Project.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="LineUp.txt" />
+    <Text Include="LinUp.txt" />
     <Text Include="People.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
